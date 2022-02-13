@@ -28,10 +28,10 @@ app.get("/", (req, res) => {
 
 app.post("/slice", upload.single("uploaded_file"), (req, res) => {
   console.log(req.file);
-  // sliceModel(req.file.filename);
+  sliceModel(req.file.filename);
   console.log(req.file.filename);
 
-  // res.download("output.gcode");
+  res.download("output.gcode");
   res.send(200);
 });
 
