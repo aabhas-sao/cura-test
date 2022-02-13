@@ -32,7 +32,6 @@ app.post("/slice", upload.single("uploaded_file"), (req, res) => {
   console.log(req.file.filename);
 
   res.download("output.gcode");
-  res.send(200);
 });
 
 app.listen(PORT, () => {
