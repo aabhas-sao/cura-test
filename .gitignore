@@ -1,4 +1,4 @@
 token
 node_modules
 .DS_Store
-uploads
+uploads/*

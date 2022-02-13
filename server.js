@@ -2,22 +2,21 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const { sliceModel } = require("./slice");
+const path = require("path");
 require("dotenv").config();
 
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 console.log(process.env.NODE_PATH);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads");
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    console.log(file);
-    const ext = file.mimetype.split("/")[1];
-    cb(null, `${file.originalname.split(".")[0]}-${Date.now()}.${ext}`);
+    cb(null, Date.now() + "-" + file.originalname);
   },
 });
 
