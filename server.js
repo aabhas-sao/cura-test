@@ -4,6 +4,8 @@ const multer = require("multer");
 const { sliceModel } = require("./slice");
 const path = require("path");
 require("dotenv").config();
+const { dirname } = require("path");
+const appDir = dirname(require.main.filename);
 
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
@@ -13,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, `${appDir}/uploads`);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
