@@ -15,7 +15,9 @@ const storage = multer.diskStorage({
     cb(null, "uploads");
   },
   filename: (req, file, cb) => {
-    cb(null, file.filename + ".stl");
+    console.log(file);
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `${file.originalname.split(".")[0]}-${Date.now()}.${ext}`);
   },
 });
 
@@ -27,9 +29,11 @@ app.get("/", (req, res) => {
 
 app.post("/slice", upload.single("uploaded_file"), (req, res) => {
   console.log(req.file);
-  sliceModel(req.file.filename);
+  // sliceModel(req.file.filename);
+  console.log(req.file.filename);
 
-  res.download("output.gcode");
+  // res.download("output.gcode");
+  res.send(200);
 });
 
 app.listen(PORT, () => {
