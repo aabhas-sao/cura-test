@@ -10,7 +10,9 @@ const sliceModel = (
 ) => {
   console.log("hello");
   const output = execSync(
-    `CuraEngine slice -v -j ${printer_def} -o ${appDir}/output.gcode -s infill_line_distance=0 -l ${filePath}/${input_file}`,
+    `CuraEngine slice -v -j ${printer_def} -o ${appDir}/outputs/${
+      input_file.split(".")[0]
+    }.gcode -s infill_line_distance=0 -l ${filePath}/${input_file}`,
     { encoding: "utf-8" }
   ); // the default is 'buffer'
 
